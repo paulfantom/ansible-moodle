@@ -7,7 +7,7 @@ verifier:
   name: testinfra
 dependency:
   name: shell
-  command: ./.travis/images.sh
+  command: ./.travis/deps.sh
 docker:
   build_image: False
   containers:

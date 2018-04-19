@@ -15,7 +15,7 @@ galaxy_info:
   - moodle
 
 
-dependencies:  []
-#  - geerlingguy.nginx
-#  - geerlingguy.php
-#  - geerlingguy.mysql
+dependencies:
+  - geerlingguy.nginx
+  - geerlingguy.php
+  - geerlingguy.mysql

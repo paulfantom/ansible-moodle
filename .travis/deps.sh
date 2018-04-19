@@ -5,3 +5,5 @@ do
 done
 
 wait
+
+ansible-galaxy install -p .molecule/roles geerlingguy.php geerlingguy.nginx geerlingguy.mysql

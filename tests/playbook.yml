@@ -2,4 +2,7 @@
 - hosts: all
   any_errors_fatal: yes
   roles:
+    - geerlingguy.nginx
+    - geerlingguy.php
+    - geerlingguy.mysql
     - ansible-moodle
