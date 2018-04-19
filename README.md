@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/paulfantom/ansible-moodle.svg?branch=master)](https://travis-ci.org/paulfantom/ansible-moodle)
 [![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
-[![Ansible Role](https://img.shields.io/badge/ansible%20role-paulfantom.node_exporter-blue.svg)](https://galaxy.ansible.com/paulfantom/moodle/)
+[![Ansible Role](https://img.shields.io/badge/ansible%20role-paulfantom.moodle-blue.svg)](https://galaxy.ansible.com/paulfantom/moodle/)
 [![GitHub tag](https://img.shields.io/github/tag/paulfantom/ansible-moodle.svg)](https://github.com/paulfantom/ansible-moodle/tags)
 
 ## Description
