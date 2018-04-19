@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Pawel Krupa
+  description: Moodle learning platform
+  license: MIT
+  min_ansible_version: 2.3
+  platforms:
+  - name: Ubuntu
+    versions:
+    - bionic
+    - xenial
+  galaxy_tags:
+  - elearning
+  - learning
+  - moodle
+
+
+dependencies:  []
+#  - geerlingguy.nginx
+#  - geerlingguy.php
+#  - geerlingguy.mysql
