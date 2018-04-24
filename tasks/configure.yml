@@ -8,7 +8,7 @@
   become: yes
   become_user: www-data
   command: |
-    /usr/bin/php admin/cli/install.php 
+    /usr/bin/php admin/cli/install.php
     --wwwroot={{ moodle_external_url }}
     --dataroot={{ moodle_data_dir }}
     --dbtype=mysqli
