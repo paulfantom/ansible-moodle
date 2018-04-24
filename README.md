@@ -11,6 +11,11 @@
 
 Deploy [moodle](https://moodle.org) open-source learning platform using ansible.
 
+Installation is adapted from official moodle docs:
+- [Step-by-step Installation Guide for Ubuntu](https://docs.moodle.org/34/en/Step-by-step_Installation_Guide_for_Ubuntu)
+- [Nginx installation](https://docs.moodle.org/34/en/Nginx)
+- [Administration via CLI](https://docs.moodle.org/34/en/Administration_via_command_line)
+
 ## Requirements
 
 - Ansible >= 2.3
@@ -21,7 +26,12 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
-| `moodle_version` | latest | Moodle package version |
+| `moodle_version` | `3.4` | Moodle package version |
+| `moodle_external_url` | `http://localhost:8888` | External URL |
+| `moodle_enable_av` | `True` | [Enable anti-virus](https://docs.moodle.org/34/en/Antivirus_plugins) |
+| `moodle_data_dir` | `/srv/moodledata` | Location of uploaded files |
+| `moodle_db` | {} | Moodle database configuration |
+| `moodle_admin` | {} | Moodle admin user configuration |
 
 ## Example
 

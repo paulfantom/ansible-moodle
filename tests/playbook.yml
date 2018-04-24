@@ -7,13 +7,27 @@
     - geerlingguy.mysql
     - ansible-moodle
   vars:
-#    php_packages_extra:
-#      - php-common
-#      - php-cli
-#      - php-dev
-    php_enable_webserver: False
+    moodle_data_dir: /srv/data
+    moodle_db:
+      name: moodle
+      user: moodle
+      pass: "correcthorsebatterystaple"
+    moodle_admin:
+      name: admin
+      pass: "password"
+      mail: "admin@example.org"
+    php_packages_extra:
+      - php-mysql
+      - php-gd
+      - php-curl
+      - php-xmlrpc
+      - php-intl
+      - php-zip
+      - php-mbstring
+    php_expose_php: false
+    php_enable_webserver: false
     php_date_timezone: "Europe/Warsaw"
-    php_enable_php_fpm: True
+    php_enable_php_fpm: true
     #php_fpm_listen: "127.0.0.1:9000"
     #php_fpm_listen_allowed_clients: "127.0.0.1"
     php_fpm_listen: "/var/run/php7-fpm.sock"
@@ -21,3 +35,32 @@
     php_fpm_pm_start_servers: 5
     php_fpm_pm_min_spare_servers: 5
     php_fpm_pm_max_spare_servers: 5
+    php_upload_max_filesize: "500M"
+    mysql_databases:
+      - name: "{{ moodle_db.name }}"
+    mysql_users:
+      - name: "{{ moodle_db.user }}"
+        password: "{{ moodle_db.pass }}"
+        priv: "{{ moodle_db.name }}.*:SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER"
+    nginx_remove_default_vhost: true
+    nginx_vhosts:
+      - listen: "80"
+        server_name: "_"
+        root: "/var/www/moodle"
+        index: "index.php index.html index.htm"
+        state: "present"
+        template: "{{ nginx_vhost_template }}"
+        filename: "moodle.conf"
+        extra_parameters: |
+          location ~ [^/]\.php(/|$) {
+              fastcgi_split_path_info ^(.+\.php)(/.+)$;
+              fastcgi_pass unix:/var/run/php7-fpm.sock;
+              fastcgi_index index.php;
+              fastcgi_param   PATH_INFO       $fastcgi_path_info;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              include fastcgi_params;
+          }
+          location /dataroot/ {
+              internal;
+              alias {{ moodle_data_dir }}/;
+          }

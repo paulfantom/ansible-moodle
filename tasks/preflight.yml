@@ -1,1 +1,32 @@
 ---
+- name: Check if database is configured (assert proper moodle_db variable)
+  assert:
+    that:
+      - moodle_db is defined
+      - moodle_db.name is defined
+      - moodle_db.name != ""
+      - moodle_db.user is defined
+      - moodle_db.user != ""
+      - moodle_db.pass is defined
+      - moodle_db.pass != ""
+
+- name: Check if admin is set (assert proper moodle_admin variable)
+  assert:
+    that:
+      - moodle_admin is defined
+      - moodle_admin.name is defined
+      - moodle_admin.name != ""
+      - moodle_admin.mail is defined
+      - moodle_admin.mail != ""
+      - moodle_admin.pass is defined
+      - moodle_admin.pass != ""
+
+- name: Add anti-virus to dependencies
+  set_fact:
+    moodle_dependencies: "{{ moodle_dependencies + ['clamav'] }}"
+  when: moodle_enable_av
+
+- name: Set git revision
+  set_fact:
+    moodle_git_version: "MOODLE_{{ moodle_version | string | replace('.','') }}_STABLE"
+  when: not moodle_git_version is defined

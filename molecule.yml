@@ -23,3 +23,5 @@ docker:
       privileged: true
       volume_mounts:
         - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      port_bindings:
+        80: 8888

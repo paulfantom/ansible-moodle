@@ -1,1 +1,18 @@
 ---
+moodle_version: 3.4
+moodle_external_url: "http://localhost:8888"
+
+moodle_enable_av: True
+moodle_data_dir: /srv/moodledata
+
+moodle_db:
+#moodle_db:
+#  name: "moodle"
+#  user: "moodle"
+#  pass: "9ushvrd8h87rdcsgnv8rea"
+
+moodle_admin:
+#moodle_admin:
+#  name: admin
+#  pass: "correcthorsebatterystaple"
+#  mail: "admin@example.org"

@@ -1,0 +1,31 @@
+---
+#- name: Ensure correct configuration file exists
+#  template:
+#    src: config.php.j2
+#    dest: /var/www/moodle/config.php
+#    mode: 0644
+- name: Execute installation script
+  become: yes
+  become_user: www-data
+  command: |
+    /usr/bin/php admin/cli/install.php 
+    --wwwroot={{ moodle_external_url }}
+    --dataroot={{ moodle_data_dir }}
+    --dbtype=mysqli
+    --dbhost=localhost
+    --dbname={{ moodle_db.name }}
+    --dbuser={{ moodle_db.user }}
+    --dbpass={{ moodle_db.pass }}
+    --dbsocket=/var/run/mysqld/mysqld.sock
+    --fullname=Moodle
+    --shortname=Moodle
+    --summary=Moodle
+    --adminuser={{ moodle_admin.name }}
+    --adminpass={{ moodle_admin.pass }}
+    --adminemail={{ moodle_admin.mail }}
+    --lang=en
+    --non-interactive
+    --agree-license
+  args:
+    creates: /var/www/moodle/config.php
+    chdir: /var/www/moodle

@@ -1,0 +1,5 @@
+moodle_dependencies:
+- graphviz
+- aspell
+- ghostscript
+- git-core

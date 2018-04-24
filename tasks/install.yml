@@ -1,0 +1,23 @@
+---
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ moodle_dependencies }}"
+  retries: 5
+  register: _install_deps
+  until: _install_deps is success
+
+- name: Fetch moodle repository
+  git:
+    repo: "https://git.in.moodle.com/moodle/moodle.git"
+    dest: /var/www/moodle
+    version: "{{ moodle_git_version }}"
+#    version: "MOODLE_34_STABLE"
+
+- name: Ensure data dir exists
+  file:
+    path: "{{ moodle_data_dir }}"
+    state: directory
+    owner: "www-data"
+    group: "www-data"
