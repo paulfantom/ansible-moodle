@@ -8,16 +8,20 @@
   register: _install_deps
   until: _install_deps is success
 
+- name: Ensure needed directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "www-data"
+    group: "www-data"
+  with_items:
+    - /var/www/moodle
+    - "{{ moodle_data_dir }}"
+
 - name: Fetch moodle repository
+  become: yes
+  become_user: www-data
   git:
     repo: "https://git.in.moodle.com/moodle/moodle.git"
     dest: /var/www/moodle
     version: "{{ moodle_git_version }}"
-#    version: "MOODLE_34_STABLE"
-
-- name: Ensure data dir exists
-  file:
-    path: "{{ moodle_data_dir }}"
-    state: directory
-    owner: "www-data"
-    group: "www-data"
