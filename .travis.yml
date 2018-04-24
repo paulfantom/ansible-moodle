@@ -4,7 +4,6 @@ cache: pip
 services:
   - docker
 env:
-  - ANSIBLE='ansible>=2.3.0,<2.4.0'
   - ANSIBLE='ansible>=2.4.0,<2.5.0'
   - ANSIBLE='ansible>=2.5.0,<2.6.0'
 install:
