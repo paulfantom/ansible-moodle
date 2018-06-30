@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: Pawel Krupa
+  role_name: moodle
   description: Moodle learning platform
   license: MIT
   min_ansible_version: 2.4
